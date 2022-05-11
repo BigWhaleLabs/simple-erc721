@@ -39,6 +39,7 @@ async function main() {
     try {
       await run('verify:verify', {
         address,
+        constructorArguments: [tokenName, tokenSymbol],
       })
     } catch (err) {
       console.log('Error verifiying contract on Etherscan:', err)
