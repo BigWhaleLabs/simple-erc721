@@ -1,6 +1,6 @@
 {
   "name": "@big-whale-labs/simple-erc721",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ERC721 contracts for testing",
   "repository": {
     "type": "git",
