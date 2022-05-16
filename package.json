@@ -1,5 +1,5 @@
 {
-  "name": "simple-erc721",
+  "name": "@big-whale-labs/simple-erc721",
   "version": "0.0.1",
   "description": "ERC721 contracts for testing",
   "repository": {
@@ -23,7 +23,9 @@
     "deploy": "yarn hardhat run --network deploy scripts/deploy.ts",
     "eth-lint": "yarn solhint 'contracts/**/*.sol'",
     "lint": "prettier --check . && eslint --max-warnings 0 --ext ts scripts && yarn eth-lint",
-    "prettify": "prettier --write ."
+    "prettify": "prettier --write .",
+    "release": "np",
+    "prepublishOnly": "yarn compile && yarn tsc"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
