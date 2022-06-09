@@ -19,7 +19,7 @@ Also check out the `.env.example` file for more information.
 
 ## Available scripts
 
-- `yarn compile` — compiles the contract ts interface to the `typechain` directory
+- `yarn build` — compiles the contract ts interface to the `typechain` directory
 - `yarn deploy` — deploys the contracts to the network
 - `yarn eth-lint` — runs the linter for the solidity contract
 - `yarn lint` — runs all the linters
