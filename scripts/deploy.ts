@@ -25,6 +25,7 @@ async function main() {
     { tokenName: 'CherryFrens', tokenSymbol: 'CHER' },
   ]
   const deployedContracts = [] as { tokenName: string; address: string }[]
+  let firstTime = true
   for (const { tokenName, tokenSymbol } of contracts) {
     console.log(`Deploying ${tokenName}...`)
     const contract = await SimpleERC721.deploy(tokenName, tokenSymbol)
@@ -33,17 +34,20 @@ async function main() {
     await contract.deployed()
     const address = contract.address
     console.log('Contract deployed to:', address)
-    console.log('Wait for 1 minute to make sure blockchain is updated')
-    await new Promise((resolve) => setTimeout(resolve, 60 * 1000))
-    // Try to verify the contract on Etherscan
-    console.log('Verifying contract on Etherscan')
-    try {
-      await run('verify:verify', {
-        address,
-        constructorArguments: [tokenName, tokenSymbol],
-      })
-    } catch (err) {
-      console.log('Error verifiying contract on Etherscan:', err)
+    if (firstTime) {
+      console.log('Wait for 1 minute to make sure blockchain is updated')
+      await new Promise((resolve) => setTimeout(resolve, 60 * 1000))
+      // Try to verify the contract on Etherscan
+      console.log('Verifying contract on Etherscan')
+      try {
+        await run('verify:verify', {
+          address,
+          constructorArguments: [tokenName, tokenSymbol],
+        })
+      } catch (err) {
+        console.log('Error verifiying contract on Etherscan:', err)
+      }
+      firstTime = false
     }
     // Print out the information
     console.log('Contract deployed and verified on Etherscan!')
