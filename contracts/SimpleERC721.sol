@@ -68,9 +68,10 @@ contract SimpleERC721 is ERC721, Ownable {
 
   Counters.Counter public tokenId;
 
-  constructor(string memory tokenName, string memory tokenSymbol)
-    ERC721(tokenName, tokenSymbol)
-  {}
+  constructor(
+    string memory tokenName,
+    string memory tokenSymbol
+  ) ERC721(tokenName, tokenSymbol) {}
 
   function mint() external {
     uint256 _tokenId = tokenId.current();
@@ -81,17 +82,15 @@ contract SimpleERC721 is ERC721, Ownable {
   function _beforeTokenTransfer(
     address _from,
     address _to,
-    uint256 _tokenId
+    uint256 _firstTokenId,
+    uint256 _batchSize
   ) internal override(ERC721) {
-    super._beforeTokenTransfer(_from, _to, _tokenId);
+    super._beforeTokenTransfer(_from, _to, _firstTokenId, _batchSize);
   }
 
-  function supportsInterface(bytes4 _interfaceId)
-    public
-    view
-    override(ERC721)
-    returns (bool)
-  {
+  function supportsInterface(
+    bytes4 _interfaceId
+  ) public view override(ERC721) returns (bool) {
     return super.supportsInterface(_interfaceId);
   }
 }
